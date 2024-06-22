@@ -1,0 +1,23 @@
+.addeventContainer{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    color: #00AFEF;
+}
+
+.addeventForm{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 30px;
+    border: #00AFEF solid 1px;
+    border-radius: 15px;
+}
+
+.labelItens{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}

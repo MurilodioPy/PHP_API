@@ -1,0 +1,38 @@
+h1{
+    color: #00AFEF;
+}
+
+.containerList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.listView{
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    width: 90%;
+    
+}
+
+.listItem{
+    display: flex;
+    color: #00AFEF;
+    flex-direction: row;
+    padding: 15px;
+    justify-content: space-between;
+    text-align: left;
+    width: 90%;
+    margin: 20px 0;
+    border: solid 1px #00AFEF;
+    border-radius: 15px;
+}
+
+.btnFuncoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

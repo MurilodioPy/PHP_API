@@ -8,6 +8,7 @@ use App\Models\Evento;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class EventoController extends Controller
 {
@@ -34,12 +35,18 @@ class EventoController extends Controller
                 'descricao' => 'required|string',
             ]);
 
-            
-            $data = Carbon::parse($validatedData['data'])->startOfDay(); // Isso garante que a data comece no início do dia
+
+            $data = Carbon::createFromFormat('Y-m-d', $validatedData['data']);
+            $formatada = $data->format('Y-m-d');
+
+            Log::info("Formatada: {$formatada}");
+            Log::info("Inserting event with nome: {$validatedData['nome']}, data: {$formatada}, local: {$validatedData['local']}, descricao: {$validatedData['descricao']}");
+
+
 
             $evento = Evento::create([
                 'nome' => $validatedData['nome'],
-                'data' => $data,
+                'data' => $formatada,
                 'local' => $validatedData['local'],
                 'descricao' => $validatedData['descricao'],
             ]);
@@ -49,6 +56,7 @@ class EventoController extends Controller
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
+            Log::error('Error saving event: ', ['exception' => $e]);
             DB::rollback();
             return response()->json(['message' => 'Erro ao salvar o evento.'], 500);
         }
@@ -90,11 +98,15 @@ class EventoController extends Controller
             ]);
 
 
-            $data = Carbon::parse($validatedData['data'])->startOfDay(); // Isso garante que a data comece no início do dia
+
+            $data = Carbon::createFromFormat('Y-m-d', $validatedData['data']);
+            $formatada = $data->format('Y-m-d');
+
+            Log::info("Formatada: {$formatada}");
 
             $evento->update([
                 'nome' => $validatedData['nome'],
-                'data' => $data,
+                'data' => $formatada,
                 'local' => $validatedData['local'],
                 'descricao' => $validatedData['descricao'],
             ]);

@@ -2,34 +2,35 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from  './addevento.module.css';
-import { format } from 'date-fns';
+
 
 export default function AddEvento(){
-    const [nomeEvento, setNomeEvento] = useState('');
+    const [nome, setNomeEvento] = useState('');
     const [data, setData] = useState('');
     const [local, setLocal] = useState('');
     const [descricao, setDescricao] = useState('');
     const [error, setError] = useState('');
     const history = useNavigate();
 
-    // Função para formatar a data no formato YYYY-MM-DD
-    const formatDate = (date) => format(date, 'yyyy-MM-dd');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        // Função para formatar a data no formato YYYY-MM-DD
+        const formattedDate = new Date(data).toISOString().split('T')[0];
 
-        const newEvento = { nome: nomeEvento, formatDate, local, descricao };
+        console.log(formattedDate)
+        console.log(data)
+
+        const newEvento = { nome:nome, data:data, local:local, descricao:descricao };
+
+        console.log(newEvento);
 
         try {
-            await axios.post('http://127.0.0.1:8000/api/eventos', newEvento);
-            console.log('Evento adicionado com sucesso!');
-            setNomeEvento('');
-            setData('');
-            setLocal('');
-            setDescricao('');
-            history.push('/');
+            const response = await axios.post('http://127.0.0.1:8000/api/eventos', newEvento);
+            if (response.status === 201) {
+              history.push('/');
+            }
         } catch (error) {
-            setError('Erro ao adicionar evento. Por favor, tente novamente mais tarde.');
             console.error('Erro ao adicionar evento:', error);
         }
     };
@@ -40,7 +41,7 @@ export default function AddEvento(){
             <form className={styles.addeventForm} onSubmit={handleSubmit}>
                 <div className={styles.labelItens}>
                     <label>Nome do Evento</label>
-                    <input type="text" value={nomeEvento} onChange={(e) => setNomeEvento(e.target.value)} required />
+                    <input type="text" value={nome} onChange={(e) => setNomeEvento(e.target.value)} required />
                 </div>
                 <div className={styles.labelItens}>
                     <label>Data</label>

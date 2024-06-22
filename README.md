@@ -20,3 +20,14 @@ Este é um projeto CRUD (Create, Read, Update, Delete) para gerenciar eventos ut
 - Listar todos os eventos
 - Editar eventos existentes
 - Deletar eventos
+
+## Navegação
+* Acesse a aplicação frontend em http://localhost:3000.
+* Acesse a API Laravel em http://localhost:8000.
+  
+## Endpoints da API
+- GET /api/eventos: Lista todos os eventos
+- GET /api/eventos/{id}: Obtém um evento específico
+- POST /api/eventos: Cria um novo evento
+- PUT /api/eventos/{id}: Atualiza um evento existente
+- DELETE /api/eventos/{id}: Deleta um evento

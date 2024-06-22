@@ -34,7 +34,7 @@ class EventoController extends Controller
                 'descricao' => 'required|string',
             ]);
 
-            // Converte a string de data para um objeto Carbon
+            
             $data = Carbon::parse($validatedData['data'])->startOfDay(); // Isso garante que a data comece no início do dia
 
             $evento = Evento::create([
@@ -67,7 +67,7 @@ class EventoController extends Controller
 
         return response()->json($evento);
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -89,7 +89,7 @@ class EventoController extends Controller
                 'descricao' => 'required|string',
             ]);
 
-            // Converte a string de data para um objeto Carbon
+
             $data = Carbon::parse($validatedData['data'])->startOfDay(); // Isso garante que a data comece no início do dia
 
             $evento->update([

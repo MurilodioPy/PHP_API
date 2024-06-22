@@ -4,7 +4,7 @@ import React from 'react';
 
 const DeleteEvento = ({ id, onDelete }) => {
   const handleClick = () => {
-    onDelete(id); // Aqui você chama a função onDelete passada como prop, passando o id
+    onDelete(id); 
   };
 
   return (

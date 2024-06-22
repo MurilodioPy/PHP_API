@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './listevento.module.css';
-import DeleteEvento from '../../components/deleteevento/deleteEvento'; // Importe o componente DeleteEvento aqui
+import DeleteEvento from '../../components/deleteevento/deleteEvento'; 
 
 export default function ListEventos() {
   const [eventos, setEventos] = useState([]);

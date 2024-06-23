@@ -24,7 +24,7 @@ php artisan make:model Evento -m
 php artisan make:controller api\EventoController --resource
 ```
 
-## Rodando o projeto
+## Rodando a aplicação
 ```
 php artisan serve
 ```
